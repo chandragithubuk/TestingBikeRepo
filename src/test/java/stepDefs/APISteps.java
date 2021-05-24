@@ -28,43 +28,37 @@ public class APISteps {
         response =request.get("/visa-frankfurt");
         String jsonString = response.asString();
 
+        //Reading Values from the Response using json-path dependency
+        // Getting values from Location-City which is in Key-Value format
         String jsonpathNetworkLocationCity = "$['network']['location']['city']";
         DocumentContext jsonContext = JsonPath.parse(jsonString);
         String locationCity = jsonContext.read(jsonpathNetworkLocationCity);
-        System.out.println("City: "+locationCity);
+        //System.out.println("City: "+locationCity);
+        Assert.assertEquals("Frankfurt", locationCity);
 
+        // Getting values from Location-Latitude which is in Key-Value format
         String jsonpathNetworkLocationLatitude = "$['network']['location']['latitude']";
         DocumentContext jsonContextLatitude = JsonPath.parse(jsonString);
         Double locationLatitude = jsonContextLatitude.read(jsonpathNetworkLocationLatitude);
-        System.out.println("Latitude: "+locationLatitude);
+        //System.out.println("Latitude: "+locationLatitude);
+        Double locationlatitudeexpected =50.1072;
+        Assert.assertEquals(locationlatitudeexpected, locationLatitude);
 
+
+        // Getting values from Location-Longitude which is in Key-Value format
         String jsonpathNetworkLocationLongitude = "$['network']['location']['longitude']";
         DocumentContext jsonContextLongitude = JsonPath.parse(jsonString);
         Double locationLongitude = jsonContextLongitude.read(jsonpathNetworkLocationLongitude);
-        System.out.println("Longitude: "+locationLongitude);
+        //System.out.println("Longitude: "+locationLongitude);
+        Double locationlongitudeexpected =8.66375;
+        Assert.assertEquals(locationlongitudeexpected, locationLongitude);
 
+        // Getting values from Network-Company which is an array format
         String jsonpathNetworkCompany = "$['network']['company']";
         DocumentContext jsonContextCompany = JsonPath.parse(jsonString);
         JSONArray networkCompany = jsonContextCompany.read(jsonpathNetworkCompany);
         System.out.println("Company: "+networkCompany);
 
-/*
-        jsonString = response.asString();
-        System.out.println("Response: "+jsonString);
-
-        Map<String, String> bikes = JsonPath.from(jsonString).get("network");
-        Assert.assertTrue(bikes.size() > 0);
-        System.out.println("BikeSize: " + bikes.size());
-
-        System.out.println("Id: "+bikes.get("id"));
-        System.out.println("href: "+bikes.get("href"));
-        System.out.println("location: "+bikes.get("location"));
-*/
-       // Map<Object, Object> locationInfo = JsonPath.from(jsonString).get("location");
-        //System.out.println("Location: "+ bikes.get("location"));
-        //Map<Object, Object> locationInfo = bikes.get("location");
-        //System.out.println("LocationInfo: "+locationInfo);
-        //System.out.println("City: "+locationInfo.get("city"));
     }
 
     @Then("^User validates the response status is (.*)$")

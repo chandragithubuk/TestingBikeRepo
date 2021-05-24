@@ -93,14 +93,14 @@ formatter.match({
   "location": "APISteps.User_sets_the_base_API_request(String)"
 });
 formatter.result({
-  "duration": 1101715500,
+  "duration": 1031904600,
   "status": "passed"
 });
 formatter.match({
   "location": "APISteps.User_sends_the_API_request_to_get_all_bike_info()"
 });
 formatter.result({
-  "duration": 4609710800,
+  "duration": 4320826200,
   "status": "passed"
 });
 formatter.match({
@@ -113,7 +113,7 @@ formatter.match({
   "location": "APISteps.User_validates_response_status_code(int)"
 });
 formatter.result({
-  "duration": 2968500,
+  "duration": 987400,
   "status": "passed"
 });
 });
